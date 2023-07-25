@@ -17,10 +17,9 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: bgColor,
       appBar: AppBar(
         backgroundColor: bgColor,
-        title: 'Devmare'.text.white.size(28).semiBold.make(),
+        leading: const Icon(Icons.message, color: Colors.grey),
+        title: 'Devmare'.text.white.size(28).semiBold.make().centered(),
         actions: [
-          const Icon(Icons.message, color: Colors.grey),
-          5.w.widthBox,
           const Icon(Icons.person, color: Colors.grey),
           5.w.widthBox,
         ],
@@ -99,9 +98,9 @@ class HomeScreen extends StatelessWidget {
                             icon: Icons.favorite,
                           ),
                         ),
-                        ChoiceButton(
-                          color: Theme.of(context).primaryColor,
-                          icon: Icons.watch_later,
+                        const ChoiceButton(
+                          color: Colors.brown,
+                          icon: Icons.watch_later_outlined,
                           hasGradient: false,
                           size: 25,
                           height: 80,
