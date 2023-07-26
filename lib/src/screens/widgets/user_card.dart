@@ -76,6 +76,6 @@ class UserCard extends StatelessWidget {
           ),
         )
       ],
-    ).box.size(100.w, 70.h).make().pSymmetric(h: 20, v: 10).scrollVertical();
+    ).box.size(100.w, 70.h).make().pSymmetric(h: 20, v: 10).hero('user_image').scrollVertical();
   }
 }

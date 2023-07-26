@@ -1,6 +1,7 @@
 import 'package:devmare/src/bloc/swipe/swipe_bloc.dart';
+import 'package:devmare/src/config/routes/app_router.dart';
 import 'package:devmare/src/model/models.dart';
-import 'package:devmare/src/screens/user/user_screen.dart';
+import 'package:devmare/src/screens/home/home_scree.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const UserScreen(),
+          onGenerateRoute: AppRouter.onGenerateRoute,
+          initialRoute: HomeScreen.routeName,
         ),
       ),
     );
