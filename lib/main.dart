@@ -1,12 +1,13 @@
 import 'package:devmare/src/bloc/swipe/swipe_bloc.dart';
 import 'package:devmare/src/config/routes/app_router.dart';
 import 'package:devmare/src/model/models.dart';
-import 'package:devmare/src/screens/home/home_scree.dart';
+import 'package:devmare/src/screens/onboarding/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -27,10 +28,10 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
+            useMaterial3: true, 
           ),
           onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: HomeScreen.routeName,
+          initialRoute: OnBoardingScreen.routeName,
         ),
       ),
     );

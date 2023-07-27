@@ -1,3 +1,4 @@
+// ignore_for_file: depend_on_referenced_packages
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
@@ -11,6 +12,7 @@ part 'swipe_state.dart';
 class SwipeBloc extends Bloc<SwipeEvent, SwipeState> {
   SwipeBloc() : super(SwipeLoading());
 
+  @override
   Stream<SwipeState> mapEventToState(
     SwipeEvent event,
   ) async* {
