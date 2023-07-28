@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CustomTextContainer extends StatelessWidget {
-  final TabController tabController;
+  final TabController? tabController;
   final String text;
   const CustomTextContainer({
     super.key,
-    required this.tabController,
+    this.tabController,
     required this.text,
   });
 

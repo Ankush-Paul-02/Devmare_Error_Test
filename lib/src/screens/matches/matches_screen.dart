@@ -1,115 +1,134 @@
-// import 'package:flutter/material.dart';
+import 'package:devmare/src/constants/colors.dart';
+import 'package:devmare/src/model/models.dart';
+import 'package:devmare/src/screens/widgets/user_small_image.dart';
+import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-// import '../../models/models.dart';
-// import '../../widgets/widgets.dart';
+class MatchesScreen extends StatelessWidget {
+  const MatchesScreen({super.key});
 
-// class MatchesScreen extends StatelessWidget {
-//   static const String routeName = '/matches';
+  static const String routeName = '/matches';
 
-//   static Route route() {
-//     return MaterialPageRoute(
-//       settings: RouteSettings(name: routeName),
-//       builder: (context) => MatchesScreen(),
-//     );
-//   }
+  static Route route() {
+    return MaterialPageRoute(
+      settings: const RouteSettings(name: routeName),
+      builder: (context) => const MatchesScreen(),
+    );
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final inactiveMatches = UserMatch.matches
-//         .where((match) => match.userId == 1 && match.chat!.isEmpty)
-//         .toList();
-//     final activeMatches = UserMatch.matches
-//         .where((match) => match.userId == 1 && match.chat!.isNotEmpty)
-//         .toList();
+  @override
+  Widget build(BuildContext context) {
+    final inactiveMatches = UserMatchModel.matches
+        .where((element) => element.userId == 1 && element.chats.isEmpty)
+        .toList();
+    final activeMatches = UserMatchModel.matches
+        .where((element) => element.userId == 1 && element.chats.isNotEmpty)
+        .toList();
 
-//     return Scaffold(
-//       appBar: CustomAppBar(title: 'MATCHES'),
-//       body: SingleChildScrollView(
-//         child: Padding(
-//           padding: const EdgeInsets.all(20.0),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Text('Your Likes', style: Theme.of(context).textTheme.headline4),
-//               SizedBox(
-//                 height: 100,
-//                 child: ListView.builder(
-//                     scrollDirection: Axis.horizontal,
-//                     shrinkWrap: true,
-//                     itemCount: inactiveMatches.length,
-//                     itemBuilder: (context, index) {
-//                       return Column(
-//                         children: [
-//                           UserImage.small(
-//                             margin: const EdgeInsets.only(top: 10, right: 10),
-//                             height: 70,
-//                             width: 70,
-//                             url:
-//                                 inactiveMatches[index].matchedUser.imageUrls[0],
-//                           ),
-//                           Text(
-//                             inactiveMatches[index].matchedUser.name,
-//                             style: Theme.of(context).textTheme.headline5,
-//                           ),
-//                         ],
-//                       );
-//                     }),
-//               ),
-//               SizedBox(height: 10),
-//               Text(
-//                 'Your Chats',
-//                 style: Theme.of(context).textTheme.headline4,
-//               ),
-//               ListView.builder(
-//                   shrinkWrap: true,
-//                   itemCount: activeMatches.length,
-//                   itemBuilder: (context, index) {
-//                     return InkWell(
-//                       onTap: () {
-//                         Navigator.pushNamed(context, '/chat',
-//                             arguments: activeMatches[index]);
-//                       },
-//                       child: Row(
-//                         children: [
-//                           UserImage.small(
-//                             margin: const EdgeInsets.only(top: 10, right: 10),
-//                             height: 70,
-//                             width: 70,
-//                             url: activeMatches[index].matchedUser.imageUrls[0],
-//                           ),
-//                           Column(
-//                             crossAxisAlignment: CrossAxisAlignment.start,
-//                             children: [
-//                               Text(
-//                                 activeMatches[index].matchedUser.name,
-//                                 style: Theme.of(context).textTheme.headline5,
-//                               ),
-//                               SizedBox(height: 5),
-//                               Text(
-//                                 activeMatches[index]
-//                                     .chat![0]
-//                                     .messages[0]
-//                                     .message,
-//                                 style: Theme.of(context).textTheme.headline6,
-//                               ),
-//                               SizedBox(height: 5),
-//                               Text(
-//                                 activeMatches[index]
-//                                     .chat![0]
-//                                     .messages[0]
-//                                     .timeString,
-//                                 style: Theme.of(context).textTheme.bodyText1,
-//                               ),
-//                             ],
-//                           )
-//                         ],
-//                       ),
-//                     );
-//                   })
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+    return Scaffold(
+      backgroundColor: bgColor,
+      appBar: AppBar(
+        backgroundColor: bgColor,
+        leading: const Icon(Icons.arrow_back, color: Colors.grey),
+        title: 'Matches'.text.white.size(28).semiBold.make().centered(),
+        actions: [
+          const Icon(Icons.message, color: Colors.grey),
+          5.w.widthBox,
+          const Icon(Icons.person, color: Colors.grey),
+          5.w.widthBox,
+        ],
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          'Your Likes'.text.bold.size(24).white.make(),
+          SizedBox(
+            height: 120,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: inactiveMatches.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    UserSmallImage(
+                      imageUrls:
+                          inactiveMatches[index].matchedUser.imageUrls[0],
+                    ),
+                    inactiveMatches[index]
+                        .matchedUser
+                        .name
+                        .text
+                        .size(16)
+                        .semiBold
+                        .white
+                        .make()
+                  ],
+                );
+              },
+            ),
+          ),
+          10.heightBox,
+          'Your Chats'.text.bold.size(24).white.make(),
+          ListView.builder(
+            itemCount: activeMatches.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) => Row(
+              children: [
+                UserSmallImage(
+                  imageUrls: activeMatches[index].matchedUser.imageUrls[0],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //! User name
+                    activeMatches[index]
+                        .matchedUser
+                        .name
+                        .text
+                        .size(16)
+                        .white
+                        .overflow(TextOverflow.ellipsis)
+                        .semiBold
+                        .make(),
+                    5.heightBox,
+                    //! Message
+                    activeMatches[index]
+                        .chats[0]
+                        .messages[0]
+                        .message
+                        .text
+                        .overflow(TextOverflow.ellipsis)
+                        .size(14)
+                        .white
+                        .normal
+                        .make(),
+                    //! Date
+                    activeMatches[index]
+                        .chats[0]
+                        .messages[0]
+                        .timeString
+                        .text
+                        .overflow(TextOverflow.ellipsis)
+                        .size(14)
+                        .color(grey)
+                        .bodyText1(context)
+                        .make(),
+                  ],
+                ),
+              ],
+            ).onInkTap(
+              () => Navigator.pushNamed(
+                context,
+                '/chat',
+                arguments: activeMatches[index],
+              ),
+            ),
+          ),
+        ],
+      ).p20().scrollVertical(),
+    );
+  }
+}

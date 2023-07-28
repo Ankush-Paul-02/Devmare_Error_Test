@@ -26,9 +26,10 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: bgColor,
       appBar: AppBar(
         backgroundColor: bgColor,
-        leading: const Icon(Icons.message, color: Colors.grey),
         title: 'Devmare'.text.white.size(28).semiBold.make().centered(),
         actions: [
+          const Icon(Icons.message, color: Colors.grey),
+          5.w.widthBox,
           const Icon(Icons.person, color: Colors.grey),
           5.w.widthBox,
         ],
