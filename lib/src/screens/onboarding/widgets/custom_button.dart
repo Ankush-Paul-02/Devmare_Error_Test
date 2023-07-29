@@ -4,10 +4,15 @@ import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CustomButton extends StatelessWidget {
-  final TabController tabController;
+  final TabController? tabController;
   final String text;
-  const CustomButton(
-      {super.key, required this.tabController, required this.text});
+  final Function() onTap;
+  const CustomButton({
+    super.key,
+    this.tabController,
+    required this.text,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +32,7 @@ class CustomButton extends StatelessWidget {
           backgroundColor: Colors.transparent,
           shape: const RoundedRectangleBorder(),
         ),
-        onPressed: () {
-          tabController.animateTo(tabController.index + 1);
-        },
+        onPressed: onTap,
         child:
             text.text.white.semiBold.make().centered().box.width(100.w).make(),
       ),

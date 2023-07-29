@@ -11,6 +11,7 @@ class EmailVerifyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final codeController = TextEditingController();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -23,7 +24,7 @@ class EmailVerifyScreen extends StatelessWidget {
             30.heightBox,
             CustomTextField(
               text: 'Enter your code..',
-              tabController: tabController,
+              controller: codeController,
             ),
           ],
         ),
@@ -38,6 +39,7 @@ class EmailVerifyScreen extends StatelessWidget {
             CustomButton(
               tabController: tabController,
               text: 'NEXT STEP',
+              onTap: () {},
             ),
           ],
         ),

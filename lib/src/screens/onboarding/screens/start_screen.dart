@@ -1,4 +1,5 @@
 import 'package:devmare/src/screens/onboarding/widgets/custom_button.dart';
+import 'package:devmare/src/screens/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -30,7 +31,13 @@ class StartScreen extends StatelessWidget {
             20.heightBox,
           ],
         ),
-        CustomButton(tabController: tabController, text: 'START')
+        CustomButton(
+          tabController: tabController,
+          text: 'START',
+          // onTap: () => tabController.animateTo(tabController.index + 1),
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const TestScreen())),
+        )
       ],
     ).pSymmetric(h: 30, v: 30);
   }

@@ -38,9 +38,13 @@ dependencies:
   velocity_x: ^4.1.1
   sizer: ^2.0.15
   equatable: ^2.0.5
-  flutter_bloc: ^7.1.0
+  flutter_bloc: ^7.2.1
   step_progress_indicator: ^1.0.2
   intl: ^0.18.1
+  firebase_auth: ^4.7.2
+  firebase_core: ^2.9.8
+  firebase_crashlytics: ^3.3.4
+  firebase_analytics: ^10.4.4
 
 dev_dependencies:
   flutter_test:

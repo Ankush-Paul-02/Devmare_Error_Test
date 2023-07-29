@@ -14,6 +14,7 @@ class BioScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bioController = TextEditingController();
     return Scaffold(
       backgroundColor: bgColor,
       resizeToAvoidBottomInset: true,
@@ -30,7 +31,7 @@ class BioScreen extends StatelessWidget {
               20.heightBox,
               CustomTextField(
                 text: 'Enter your bio..',
-                tabController: tabController,
+                controller: bioController,
               ),
               40.heightBox,
               TextHeader(
@@ -104,6 +105,9 @@ class BioScreen extends StatelessWidget {
               CustomButton(
                 tabController: tabController,
                 text: 'NEXT STEP',
+                onTap: () {
+                  
+                },
               ),
             ],
           ),

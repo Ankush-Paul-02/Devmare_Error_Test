@@ -14,29 +14,36 @@ class DemoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final demoController = TextEditingController();
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextHeader(
-              tabController: tabController,
-              text: 'What\'s Your Gender?',
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextHeader(
+                  tabController: tabController,
+                  text: 'What\'s Your Gender?',
+                ),
+                10.heightBox,
+                CustomCheckBox(tabController: tabController, text: 'MALE'),
+                5.heightBox,
+                CustomCheckBox(tabController: tabController, text: 'FEMALE'),
+                100.heightBox,
+                TextHeader(
+                  tabController: tabController,
+                  text: 'What\'s Your Age?',
+                ),
+                20.heightBox,
+                CustomTextField(
+                  text: 'Enter your age...',
+                  controller: demoController,
+                ),
+              ],
             ),
-            10.heightBox,
-            CustomCheckBox(tabController: tabController, text: 'MALE'),
-            5.heightBox,
-            CustomCheckBox(tabController: tabController, text: 'FEMALE'),
-            100.heightBox,
-            TextHeader(
-              tabController: tabController,
-              text: 'What\'s Your Age?',
-            ),
-            20.heightBox,
-            CustomTextField(
-                text: 'Enter your age...', tabController: tabController),
-          ],
+          ),
         ),
         Column(
           children: [
@@ -49,6 +56,7 @@ class DemoScreen extends StatelessWidget {
             CustomButton(
               tabController: tabController,
               text: 'NEXT STEP',
+              onTap: (){},
             ),
           ],
         ),

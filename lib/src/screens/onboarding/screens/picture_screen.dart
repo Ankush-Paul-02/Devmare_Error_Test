@@ -51,6 +51,9 @@ class PictureScreen extends StatelessWidget {
             CustomButton(
               tabController: tabController,
               text: 'NEXT STEP',
+              onTap: () {
+                
+              },
             ),
           ],
         ),
